@@ -6,7 +6,7 @@
 /*   By: flavon <flavon@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 11:14:15 by flavon            #+#    #+#             */
-/*   Updated: 2020/10/20 13:02:31 by flavon           ###   ########.fr       */
+/*   Updated: 2020/11/06 19:27:42 by flavon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,27 @@
 # include <pthread.h>
 
 
-typedef struct	s_philo
+typedef struct			s_data
 {
-	int			count_philo;
-	int			time_die;
-	int			time_eat;
-	int			time_sleep;
-	int			philo_must_eat;
-}				t_philo;
+	int					count_philo;
+	int					count_forks;
+	unsigned int		time_die;
+	unsigned int		time_eat;
+	unsigned int		time_sleep;
+	int 				philo_must_eat;
+	pthread_mutex_t		philo;
+	pthread_mutex_t		forks;
+}						t_data;
 
-int		ft_atoi(const char *src);
-void	ft_putstr(char *str);
+typedef struct			s_philo
+{
+	int					id;
+	int					lunch_time;
+	t_data				*data;
+}						t_philo;
+
+
+int						ft_atoi(const char *src);
+void					ft_putstr(char *str);
 
 #endif
