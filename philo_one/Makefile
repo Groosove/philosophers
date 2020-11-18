@@ -6,13 +6,13 @@
 #    By: flavon <flavon@student.21-school.ru>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/19 11:15:56 by flavon            #+#    #+#              #
-#    Updated: 2020/10/20 13:03:24 by flavon           ###   ########.fr        #
+#    Updated: 2020/11/18 09:53:07 by flavon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo_one
 
-SRCS = main.c libft_utils.c
+SRCS = main.c libft_utils.c philo_utils.c
 
 INCLUDE = philo_one.h
 
