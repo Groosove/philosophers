@@ -6,7 +6,7 @@
 /*   By: flavon <flavon@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 11:13:40 by flavon            #+#    #+#             */
-/*   Updated: 2020/11/18 02:22:18 by flavon           ###   ########.fr       */
+/*   Updated: 2020/11/18 09:57:12 by flavon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	philo_one_start(t_state *state)
 	}
 }
 
-int		main(int argc, char **argv)
+int main(int argc, char **argv)
 {
 	t_state	state;
 	

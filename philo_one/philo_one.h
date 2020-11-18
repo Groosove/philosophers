@@ -6,9 +6,10 @@
 /*   By: flavon <flavon@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 11:14:15 by flavon            #+#    #+#             */
-/*   Updated: 2020/11/18 02:16:45 by flavon           ###   ########.fr       */
+/*   Updated: 2020/11/18 09:56:26 by flavon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef PHILO_ONE_H
 # define PHILO_ONE_H
