@@ -6,7 +6,7 @@
 /*   By: flavon <flavon@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 11:14:15 by flavon            #+#    #+#             */
-/*   Updated: 2020/11/18 09:56:26 by flavon           ###   ########.fr       */
+/*   Updated: 2020/11/18 10:21:00 by flavon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct		s_state
 
 typedef struct		s_philo
 {
-	int				sim_start;
+	long int		sim_start;
 	int				id;
 	long int		lunch_time;
 	int				philo_must_eat;
@@ -50,6 +50,7 @@ typedef struct		s_philo
 int				ft_atoi(const char *src);
 void			ft_putstr(char *str);
 char			*ft_strchr(const char *str, int ch);
+long int		ft_time(void);
 
 /*
 **				GENERAL_FUNCTION
