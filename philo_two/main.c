@@ -6,7 +6,7 @@
 /*   By: flavon <flavon@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 11:13:40 by flavon            #+#    #+#             */
-/*   Updated: 2020/11/21 15:27:58 by flavon           ###   ########.fr       */
+/*   Updated: 2020/11/21 21:51:27 by flavon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ int		ft_sem_init(t_state *state)
 	sem_unlink("waiter");
 	if ((state->forks = sem_open("forks", O_CREAT, 0660, state->count_philo)) < 0)
 		return (0);
-	if ((state->forks = sem_open("time", O_CREAT, 0660, 1)) < 0)
+	if ((state->time = sem_open("time", O_CREAT, 0660, 1)) < 0)
 		return (0);
-	if ((state->forks = sem_open("out", O_CREAT, 0660, 1)) < 0)
+	if ((state->out = sem_open("out", O_CREAT, 0660, 1)) < 0)
 		return (0);
-	if ((state->forks = sem_open("death", O_CREAT, 0660, 1)) < 0)
+	if ((state->death = sem_open("death", O_CREAT, 0660, 1)) < 0)
 		return (0);
-	if ((state->forks = sem_open("waiter", O_CREAT, 0660, 1)) < 0)
+	if ((state->waiter = sem_open("waiter", O_CREAT, 0660, 1)) < 0)
 		return (0);
 	return (1);
 }
@@ -67,6 +67,11 @@ void	philo_two_start(t_state *state)
 	i = -1;
 	while (++i < state->count_philo)
 		pthread_join(thread_philo[i], NULL);
+	sem_close(state->forks);
+	sem_close(state->waiter);
+	sem_close(state->death);
+	sem_close(state->out);
+	sem_close(state->time);
 }
 
 int main(int argc, char **argv)

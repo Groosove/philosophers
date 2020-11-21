@@ -6,7 +6,7 @@
 /*   By: flavon <flavon@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 13:35:29 by flavon            #+#    #+#             */
-/*   Updated: 2020/11/21 16:55:59 by flavon           ###   ########.fr       */
+/*   Updated: 2020/11/21 21:51:45 by flavon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,8 @@ void	ft_philo_eat(t_philo *philo)
 	sem_wait(philo->state->waiter);
 	sem_wait(philo->state->forks);
 	write_message(philo, "has taken a fork\n");
-	sem_post(philo->state->forks);
 	sem_wait(philo->state->forks);
 	write_message(philo, "has taken a fork\n");
-	sem_post(philo->state->forks);
 	sem_post(philo->state->waiter);
 	write_message(philo, "start eating\n");
 	sem_wait(philo->state->time);

@@ -6,11 +6,11 @@
 #    By: flavon <flavon@student.21-school.ru>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/19 11:15:56 by flavon            #+#    #+#              #
-#    Updated: 2020/11/21 14:58:18 by flavon           ###   ########.fr        #
+#    Updated: 2020/11/21 16:59:28 by flavon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = philo_one
+NAME = philo_two
 
 SRCS = main.c libft_utils.c philo_two.c philo_utils.c
 
