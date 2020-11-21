@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_one.h                                        :+:      :+:    :+:   */
+/*   philo_two.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: flavon <flavon@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 11:14:15 by flavon            #+#    #+#             */
-/*   Updated: 2020/11/21 14:14:05 by flavon           ###   ########.fr       */
+/*   Updated: 2020/11/21 15:25:52 by flavon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-#ifndef PHILO_ONE_H
-# define PHILO_ONE_H
+#ifndef PHILO_TWO_H
+# define PHILO_TWO_H
 
 # include <stdlib.h>
 # include <unistd.h>
@@ -20,6 +20,7 @@
 # include <sys/time.h>
 # include <pthread.h>
 # include <stdio.h>
+# include <semaphore.h>
 
 typedef struct		s_state
 {
@@ -29,10 +30,11 @@ typedef struct		s_state
 	long			time_sleep;
 	int				philo_must_eat;
 	int 			is_dead;
-	pthread_mutex_t	*forks;
-	pthread_mutex_t	death;
-	pthread_mutex_t	out;
-	pthread_mutex_t	time;
+	sem_t			*forks;
+	sem_t			*time;
+	sem_t			*out;
+	sem_t			*death;
+	sem_t			*waiter;
 }					t_state;
 
 typedef struct		s_philo

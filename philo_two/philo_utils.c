@@ -6,11 +6,11 @@
 /*   By: flavon <flavon@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 09:52:45 by flavon            #+#    #+#             */
-/*   Updated: 2020/11/21 14:13:27 by flavon           ###   ########.fr       */
+/*   Updated: 2020/11/21 15:30:16 by flavon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_one.h"
+#include "philo_two.h"
 
 long int	ft_time(void)
 {

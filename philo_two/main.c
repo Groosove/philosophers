@@ -6,18 +6,35 @@
 /*   By: flavon <flavon@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 11:13:40 by flavon            #+#    #+#             */
-/*   Updated: 2020/11/21 14:15:10 by flavon           ###   ########.fr       */
+/*   Updated: 2020/11/21 15:27:58 by flavon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_one.h"
+#include "philo_two.h"
+
+int		ft_sem_init(t_state *state)
+{
+	sem_unlink("forks");
+	sem_unlink("time");
+	sem_unlink("out");
+	sem_unlink("death");
+	sem_unlink("waiter");
+	if ((state->forks = sem_open("forks", O_CREAT, 0660, state->count_philo)) < 0)
+		return (0);
+	if ((state->forks = sem_open("time", O_CREAT, 0660, 1)) < 0)
+		return (0);
+	if ((state->forks = sem_open("out", O_CREAT, 0660, 1)) < 0)
+		return (0);
+	if ((state->forks = sem_open("death", O_CREAT, 0660, 1)) < 0)
+		return (0);
+	if ((state->forks = sem_open("waiter", O_CREAT, 0660, 1)) < 0)
+		return (0);
+	return (1);
+}
 
 int		ft_argv_check(char **argv, int argc, t_state *state)
 {
 	int						i;
-	static pthread_mutex_t	death = PTHREAD_MUTEX_INITIALIZER;
-	static pthread_mutex_t	output = PTHREAD_MUTEX_INITIALIZER;
-	static pthread_mutex_t	philo_time = PTHREAD_MUTEX_INITIALIZER;
 
 	i = -1;
 	if ((state->count_philo = ft_atoi(argv[1])) < 2 ||
@@ -26,26 +43,18 @@ int		ft_argv_check(char **argv, int argc, t_state *state)
 		!(state->time_sleep = ft_atoi(argv[4])) ||
 		!(state->philo_must_eat = (argc == 6) ? ft_atoi(argv[5]) : -1))
 		return (0);
-	state->death = death;
-	state->out = output;
-	state->time = philo_time;
-	pthread_mutex_destroy(&death);
-	pthread_mutex_destroy(&output);
-	pthread_mutex_destroy(&philo_time);
+	if(!ft_sem_init(state))
+		return (0);
 	return (1);
 }
 
-void	philo_one_start(t_state *state)
+void	philo_two_start(t_state *state)
 {
-	pthread_mutex_t		fork[state->count_philo];
 	t_philo				philo[state->count_philo];
 	pthread_t			thread_philo[state->count_philo];
 	int					i;
 
 	i = -1;
-	while (++i < state->count_philo)
-		pthread_mutex_init(&fork[i], NULL);
-	state->forks = fork;
 	state->is_dead = 0;
 	i = -1;
 	while (++i < state->count_philo)
@@ -74,6 +83,6 @@ int main(int argc, char **argv)
 		ft_putstr("Invalid arguments\n");
 		return (1);
 	}
-	philo_one_start(&state);
+	philo_two_start(&state);
 	return (0);
 }

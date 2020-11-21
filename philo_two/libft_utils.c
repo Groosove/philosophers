@@ -6,11 +6,11 @@
 /*   By: flavon <flavon@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 12:31:51 by flavon            #+#    #+#             */
-/*   Updated: 2020/11/21 14:12:45 by flavon           ###   ########.fr       */
+/*   Updated: 2020/11/21 15:30:24 by flavon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_one.h"
+#include "philo_two.h"
 
 int			ft_atoi(const char *src)
 {
