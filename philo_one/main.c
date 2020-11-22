@@ -6,7 +6,7 @@
 /*   By: flavon <flavon@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 11:13:40 by flavon            #+#    #+#             */
-/*   Updated: 2020/11/21 14:15:10 by flavon           ###   ########.fr       */
+/*   Updated: 2020/11/22 20:05:20 by flavon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,9 @@ void	philo_one_start(t_state *state)
 	i = -1;
 	while (++i < state->count_philo)
 		pthread_join(thread_philo[i], NULL);
+	i = -1;
+	while (++i < state->count_philo)
+		pthread_mutex_destroy(&state->forks[i]);
 }
 
 int main(int argc, char **argv)
@@ -75,5 +78,8 @@ int main(int argc, char **argv)
 		return (1);
 	}
 	philo_one_start(&state);
+	pthread_mutex_destroy(&state.death);
+	pthread_mutex_destroy(&state.out);
+	pthread_mutex_destroy(&state.time);
 	return (0);
 }
