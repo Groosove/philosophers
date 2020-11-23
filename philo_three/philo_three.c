@@ -6,7 +6,7 @@
 /*   By: flavon <flavon@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 13:35:29 by flavon            #+#    #+#             */
-/*   Updated: 2020/11/22 20:47:30 by flavon           ###   ########.fr       */
+/*   Updated: 2020/11/24 02:45:02 by flavon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,17 @@ void	ft_philo_eat(t_philo *philo)
 {
 	sem_wait(philo->state->waiter);
 	sem_wait(philo->state->forks);
+	sem_wait(philo->state->out);
 	write_message(philo, "has taken a fork\n");
+	sem_post(philo->state->out);
 	sem_wait(philo->state->forks);
+	sem_wait(philo->state->out);
 	write_message(philo, "has taken a fork\n");
+	sem_post(philo->state->out);
 	sem_post(philo->state->waiter);
+	sem_wait(philo->state->out);
 	write_message(philo, "start eating\n");
+	sem_post(philo->state->out);
 	sem_wait(philo->state->time);
 	philo->lunch_time = ft_time();
 	sem_post(philo->state->time);
@@ -56,7 +62,8 @@ void	*ft_check_dead(void *phi)
 	sem_post(philo->state->time);
 	if (!philo->philo_must_eat)
 		return (NULL);
-	write_message(philo, "is dead\n");
+	sem_wait(philo->state->out);
+	write_message(philo, RED"is dead\n"RESET);
 	philo->state->is_dead = 1;
 	sem_post(philo->state->philo_died);
 	sem_post(philo->state->death);
@@ -77,11 +84,15 @@ void	start_simulation(t_philo *philo)
 		ft_philo_eat(philo);
 		if (philo->state->is_dead)
 			break ;
+		sem_wait(philo->state->out);
 		write_message(philo, "is sleeping\n");
+		sem_post(philo->state->out);
 		ft_philo_sleep(philo->state->time_sleep);
 		if (philo->state->is_dead)
 			break ;
+		sem_wait(philo->state->out);
 		write_message(philo, "is thinking\n");
+		sem_post(philo->state->out);
 		philo->philo_must_eat -= 1;
 	}
 	pthread_join(dead, NULL);

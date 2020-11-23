@@ -6,7 +6,7 @@
 /*   By: flavon <flavon@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 11:14:15 by flavon            #+#    #+#             */
-/*   Updated: 2020/11/22 20:17:04 by flavon           ###   ########.fr       */
+/*   Updated: 2020/11/24 02:43:50 by flavon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 # include <stdio.h>
 # include <semaphore.h>
 # include <signal.h>
+# define GREEN "\033[32m"
+# define RESET "\033[0m"
+# define RED "\033[31m"
 
 typedef struct		s_state
 {
