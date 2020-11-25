@@ -6,7 +6,7 @@
 /*   By: flavon <flavon@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 13:35:29 by flavon            #+#    #+#             */
-/*   Updated: 2020/11/25 23:11:28 by flavon           ###   ########.fr       */
+/*   Updated: 2020/11/25 23:31:43 by flavon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	*ft_check_dead(void *phi)
 	pthread_mutex_unlock(&philo->state->time);
 	if (!philo->philo_must_eat)
 		return (NULL);
-	write_message(philo, "is dead\n");
+	write_message(philo, RED"is dead\n"RESET);
 	philo->state->is_dead = 1;
 	pthread_mutex_unlock(&philo->state->death);
 	return (NULL);
