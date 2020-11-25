@@ -6,7 +6,7 @@
 /*   By: flavon <flavon@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 13:35:29 by flavon            #+#    #+#             */
-/*   Updated: 2020/11/21 14:13:22 by flavon           ###   ########.fr       */
+/*   Updated: 2020/11/25 23:11:28 by flavon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,24 +21,24 @@ void	ft_philo_sleep(int time)
 		usleep(1);
 }
 
-
-
 void	ft_philo_eat(t_philo *philo)
 {
+	int fork;
+
+	fork = (philo->id + 1) % philo->state->count_philo;
 	if (philo->id % 2 == 0)
-		take_fork(philo, philo->id, (philo->id + 1) % philo->state->count_philo, 1);
+		take_fork(philo, philo->id, fork, 1);
 	else
-		take_fork(philo, (philo->id + 1) % philo->state->count_philo, philo->id, 1);
+		take_fork(philo, fork, philo->id, 1);
 	write_message(philo, "start eating\n");
 	pthread_mutex_lock(&philo->state->time);
 	philo->lunch_time = ft_time();
 	pthread_mutex_unlock(&philo->state->time);
 	ft_philo_sleep(philo->state->time_eat);
 	if (philo->state->count_philo % 2 == 0)
-		take_fork(philo, philo->id, (philo->id + 1) % philo->state->count_philo, 0);
+		take_fork(philo, philo->id, fork, 0);
 	else
-		take_fork(philo, (philo->id + 1) % philo->state->count_philo, philo->id, 0);
-
+		take_fork(philo, fork, philo->id, 0);
 }
 
 void	*ft_check_dead(void *phi)
@@ -46,7 +46,7 @@ void	*ft_check_dead(void *phi)
 	t_philo *philo;
 
 	philo = (t_philo *)phi;
-	while(1)
+	while (1)
 	{
 		pthread_mutex_lock(&philo->state->time);
 		if (ft_time() - philo->lunch_time > philo->state->time_die)
@@ -64,8 +64,8 @@ void	*ft_check_dead(void *phi)
 
 void	*start_simulation(void *phi)
 {
-	t_philo *philo;
-	pthread_t dead;
+	t_philo		*philo;
+	pthread_t	dead;
 
 	philo = (t_philo *)phi;
 	philo->sim_start = ft_time();

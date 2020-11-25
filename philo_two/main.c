@@ -6,7 +6,7 @@
 /*   By: flavon <flavon@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 11:13:40 by flavon            #+#    #+#             */
-/*   Updated: 2020/11/21 21:51:27 by flavon           ###   ########.fr       */
+/*   Updated: 2020/11/25 23:16:07 by flavon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int		ft_sem_init(t_state *state)
 	sem_unlink("out");
 	sem_unlink("death");
 	sem_unlink("waiter");
-	if ((state->forks = sem_open("forks", O_CREAT, 0660, state->count_philo)) < 0)
+	if ((state->forks =
+		sem_open("forks", O_CREAT, 0660, state->count_philo)) < 0)
 		return (0);
 	if ((state->time = sem_open("time", O_CREAT, 0660, 1)) < 0)
 		return (0);
@@ -43,7 +44,7 @@ int		ft_argv_check(char **argv, int argc, t_state *state)
 		!(state->time_sleep = ft_atoi(argv[4])) ||
 		!(state->philo_must_eat = (argc == 6) ? ft_atoi(argv[5]) : -1))
 		return (0);
-	if(!ft_sem_init(state))
+	if (!ft_sem_init(state))
 		return (0);
 	return (1);
 }
@@ -74,7 +75,7 @@ void	philo_two_start(t_state *state)
 	sem_close(state->time);
 }
 
-int main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
 	t_state	state;
 

@@ -6,10 +6,9 @@
 /*   By: flavon <flavon@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 11:14:15 by flavon            #+#    #+#             */
-/*   Updated: 2020/11/21 15:25:52 by flavon           ###   ########.fr       */
+/*   Updated: 2020/11/25 23:18:40 by flavon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef PHILO_TWO_H
 # define PHILO_TWO_H
@@ -21,6 +20,8 @@
 # include <pthread.h>
 # include <stdio.h>
 # include <semaphore.h>
+# define GREEN "\033[32m"
+# define RESET "\033[0m"
 
 typedef struct		s_state
 {
@@ -29,7 +30,7 @@ typedef struct		s_state
 	long			time_eat;
 	long			time_sleep;
 	int				philo_must_eat;
-	int 			is_dead;
+	int				is_dead;
 	sem_t			*forks;
 	sem_t			*time;
 	sem_t			*out;
@@ -50,25 +51,25 @@ typedef struct		s_philo
 **				LIBFT-UTILS
 */
 
-int				ft_atoi(const char *src);
-void			ft_putstr(char *str);
-char			*ft_strchr(const char *str, int ch);
-long int		ft_time(void);
-char			*ft_itoa(int n);
-int 			ft_strlen(char *str);
+int					ft_atoi(const char *src);
+void				ft_putstr(char *str);
+char				*ft_strchr(const char *str, int ch);
+long int			ft_time(void);
+char				*ft_itoa(int n);
+int					ft_strlen(char *str);
 
 /*
 **				GENERAL_FUNCTION
 */
 
-void			*start_simulation(void *phi);
+void				*start_simulation(void *phi);
 
 /*
 **				SIMULATION_UTILS
 */
 
-long int		ft_time(void);
-void			take_fork(t_philo *philo, int left_fork, int right_fork, int flag);
-void			write_message(t_philo *philo, char *str);
+long int			ft_time(void);
+void				take_fork(t_philo *philo, int left, int right, int flag);
+void				write_message(t_philo *philo, char *str);
 
 #endif

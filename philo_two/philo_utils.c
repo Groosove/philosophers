@@ -6,7 +6,7 @@
 /*   By: flavon <flavon@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 09:52:45 by flavon            #+#    #+#             */
-/*   Updated: 2020/11/21 16:59:14 by flavon           ###   ########.fr       */
+/*   Updated: 2020/11/25 23:14:28 by flavon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,12 @@
 long int	ft_time(void)
 {
 	struct timeval time;
+
 	gettimeofday(&time, NULL);
 	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
 }
 
-void	write_message(t_philo *philo, char *str)
+void		write_message(t_philo *philo, char *str)
 {
 	char *time_msg;
 	char *philo_id;

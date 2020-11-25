@@ -6,7 +6,7 @@
 /*   By: flavon <flavon@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 12:31:51 by flavon            #+#    #+#             */
-/*   Updated: 2020/11/22 19:45:41 by flavon           ###   ########.fr       */
+/*   Updated: 2020/11/25 23:13:49 by flavon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,11 @@ void		ft_putstr(char *str)
 		write(1, str++, 1);
 }
 
-int ft_strlen(char *str)
+int			ft_strlen(char *str)
 {
-	int i = 0;
+	int i;
+
+	i = 0;
 	while (str[i])
 		++i;
 	return (i);
@@ -63,7 +65,7 @@ char		*ft_itoa(int n)
 
 	len = 1;
 	nbr = n;
-	while((nbr /= 10) != 0)
+	while ((nbr /= 10) != 0)
 		++len;
 	if (!(res = (char *)malloc(len + 1)))
 		return (NULL);

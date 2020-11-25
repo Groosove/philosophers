@@ -6,7 +6,7 @@
 /*   By: flavon <flavon@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 13:35:29 by flavon            #+#    #+#             */
-/*   Updated: 2020/11/21 21:51:45 by flavon           ###   ########.fr       */
+/*   Updated: 2020/11/25 23:16:31 by flavon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ void	ft_philo_sleep(int time)
 	while (ft_time() - start_time < time)
 		usleep(1);
 }
-
-
 
 void	ft_philo_eat(t_philo *philo)
 {
@@ -38,7 +36,6 @@ void	ft_philo_eat(t_philo *philo)
 	ft_philo_sleep(philo->state->time_eat);
 	sem_post(philo->state->forks);
 	sem_post(philo->state->forks);
-
 }
 
 void	*ft_check_dead(void *phi)
@@ -46,7 +43,7 @@ void	*ft_check_dead(void *phi)
 	t_philo *philo;
 
 	philo = (t_philo *)phi;
-	while(1)
+	while (1)
 	{
 		sem_wait(philo->state->time);
 		if (ft_time() - philo->lunch_time > philo->state->time_die)
@@ -64,8 +61,8 @@ void	*ft_check_dead(void *phi)
 
 void	*start_simulation(void *phi)
 {
-	t_philo *philo;
-	pthread_t dead;
+	t_philo		*philo;
+	pthread_t	dead;
 
 	philo = (t_philo *)phi;
 	philo->sim_start = ft_time();

@@ -6,7 +6,7 @@
 /*   By: flavon <flavon@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 11:13:40 by flavon            #+#    #+#             */
-/*   Updated: 2020/11/22 20:05:20 by flavon           ###   ########.fr       */
+/*   Updated: 2020/11/25 23:07:23 by flavon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	philo_one_start(t_state *state)
 		pthread_mutex_destroy(&state->forks[i]);
 }
 
-int main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
 	t_state	state;
 

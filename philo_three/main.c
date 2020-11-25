@@ -6,7 +6,7 @@
 /*   By: flavon <flavon@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 11:13:40 by flavon            #+#    #+#             */
-/*   Updated: 2020/11/22 20:20:23 by flavon           ###   ########.fr       */
+/*   Updated: 2020/11/25 23:28:06 by flavon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int		ft_sem_init(t_state *state)
 	sem_unlink("death");
 	sem_unlink("waiter");
 	sem_unlink("philo_died");
-	if ((state->forks = sem_open("forks", O_CREAT, 0660, state->count_philo)) < 0)
+	if ((state->forks =
+		sem_open("forks", O_CREAT, 0660, state->count_philo)) < 0)
 		return (0);
 	if ((state->time = sem_open("time", O_CREAT, 0660, 1)) < 0)
 		return (0);
@@ -46,7 +47,7 @@ int		ft_argv_check(char **argv, int argc, t_state *state)
 		!(state->time_sleep = ft_atoi(argv[4])) ||
 		!(state->philo_must_eat = (argc == 6) ? ft_atoi(argv[5]) : -1))
 		return (0);
-	if(!ft_sem_init(state))
+	if (!ft_sem_init(state))
 		return (0);
 	return (1);
 }
@@ -59,13 +60,12 @@ void	philo_two_start(t_state *state)
 	int					i;
 
 	i = 0;
-	state->is_dead = 0;
 	sem_wait(state->philo_died);
 	while (i < state->count_philo)
 	{
 		phi = fork();
 		if (phi == 0)
-		{	
+		{
 			philo[i].id = i;
 			philo[i].state = state;
 			philo[i].philo_must_eat = state->philo_must_eat;
@@ -79,15 +79,9 @@ void	philo_two_start(t_state *state)
 	i = -1;
 	while (++i < state->count_philo)
 		kill(fork_philo[i], SIGKILL);
-	sem_close(state->forks);
-	sem_close(state->waiter);
-	sem_close(state->death);
-	sem_close(state->out);
-	sem_close(state->time);
-	sem_close(state->philo_died);
 }
 
-int main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
 	t_state	state;
 
@@ -101,6 +95,13 @@ int main(int argc, char **argv)
 		ft_putstr("Invalid arguments\n");
 		return (1);
 	}
+	state.is_dead = 0;
 	philo_two_start(&state);
+	sem_close(state.forks);
+	sem_close(state.waiter);
+	sem_close(state.death);
+	sem_close(state.out);
+	sem_close(state.time);
+	sem_close(state.philo_died);
 	return (0);
 }
