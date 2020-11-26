@@ -6,7 +6,7 @@
 /*   By: flavon <flavon@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 13:35:29 by flavon            #+#    #+#             */
-/*   Updated: 2020/11/25 23:28:44 by flavon           ###   ########.fr       */
+/*   Updated: 2020/11/27 02:12:56 by flavon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	ft_philo_sleep(int time)
 {
-	long start_time;
+	int start_time;
 
 	start_time = ft_time();
 	while (ft_time() - start_time < time)
-		usleep(1);
+		usleep(10);
 }
 
 void	ft_philo_eat(t_philo *philo)
@@ -55,6 +55,7 @@ void	*ft_check_dead(void *phi)
 		if (ft_time() - philo->lunch_time > philo->state->time_die)
 			break ;
 		sem_post(philo->state->time);
+		usleep(10);
 	}
 	sem_post(philo->state->time);
 	if (!philo->philo_must_eat)

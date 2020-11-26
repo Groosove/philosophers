@@ -6,7 +6,7 @@
 /*   By: flavon <flavon@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 13:35:29 by flavon            #+#    #+#             */
-/*   Updated: 2020/11/25 23:31:43 by flavon           ###   ########.fr       */
+/*   Updated: 2020/11/26 19:00:38 by flavon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,31 @@
 
 void	ft_philo_sleep(int time)
 {
-	long start_time;
+	int start_time;
 
 	start_time = ft_time();
 	while (ft_time() - start_time < time)
-		usleep(1);
+		usleep(10);
 }
 
 void	ft_philo_eat(t_philo *philo)
 {
-	int fork;
+	int r_fork;
+	int l_fork;
 
-	fork = (philo->id + 1) % philo->state->count_philo;
+	r_fork = (philo->id + 1) % philo->state->count_philo;
+	l_fork = philo->id;
 	if (philo->id % 2 == 0)
-		take_fork(philo, philo->id, fork, 1);
+		take_fork(philo, l_fork, r_fork);
 	else
-		take_fork(philo, fork, philo->id, 1);
+		take_fork(philo, r_fork, l_fork);
 	write_message(philo, "start eating\n");
-	pthread_mutex_lock(&philo->state->time);
+	pthread_mutex_lock(&philo->state->philo_time);
 	philo->lunch_time = ft_time();
-	pthread_mutex_unlock(&philo->state->time);
+	pthread_mutex_unlock(&philo->state->philo_time);
 	ft_philo_sleep(philo->state->time_eat);
-	if (philo->state->count_philo % 2 == 0)
-		take_fork(philo, philo->id, fork, 0);
-	else
-		take_fork(philo, fork, philo->id, 0);
+	pthread_mutex_unlock(&philo->state->forks[r_fork]);
+	pthread_mutex_unlock(&philo->state->forks[l_fork]);
 }
 
 void	*ft_check_dead(void *phi)
@@ -48,12 +48,13 @@ void	*ft_check_dead(void *phi)
 	philo = (t_philo *)phi;
 	while (1)
 	{
-		pthread_mutex_lock(&philo->state->time);
+		pthread_mutex_lock(&philo->state->philo_time);
 		if (ft_time() - philo->lunch_time > philo->state->time_die)
 			break ;
-		pthread_mutex_unlock(&philo->state->time);
+		pthread_mutex_unlock(&philo->state->philo_time);
+		usleep(10);
 	}
-	pthread_mutex_unlock(&philo->state->time);
+	pthread_mutex_unlock(&philo->state->philo_time);
 	if (!philo->philo_must_eat)
 		return (NULL);
 	write_message(philo, RED"is dead\n"RESET);

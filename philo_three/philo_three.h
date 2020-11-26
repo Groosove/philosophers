@@ -6,7 +6,7 @@
 /*   By: flavon <flavon@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 11:14:15 by flavon            #+#    #+#             */
-/*   Updated: 2020/11/25 23:25:27 by flavon           ###   ########.fr       */
+/*   Updated: 2020/11/27 02:15:13 by flavon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void				start_simulation(t_philo *phi);
 **				SIMULATION_UTILS
 */
 
-long int			ft_time(void);
+int					ft_time(void);
 void				take_fork(t_philo *philo, int left, int right, int flag);
 void				write_message(t_philo *philo, char *str);
 

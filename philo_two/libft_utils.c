@@ -6,7 +6,7 @@
 /*   By: flavon <flavon@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 12:31:51 by flavon            #+#    #+#             */
-/*   Updated: 2020/11/25 23:13:57 by flavon           ###   ########.fr       */
+/*   Updated: 2020/11/27 02:18:05 by flavon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int			ft_atoi(const char *src)
 		return (0);
 	while (*src != 0 && (*src >= 48 && *src <= 57))
 		result = (result * 10) + *src++ - '0';
+	if (*src != 0)
+		return (0);
 	return (result);
 }
 

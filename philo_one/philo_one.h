@@ -6,7 +6,7 @@
 /*   By: flavon <flavon@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 11:14:15 by flavon            #+#    #+#             */
-/*   Updated: 2020/11/25 23:31:06 by flavon           ###   ########.fr       */
+/*   Updated: 2020/11/26 18:29:43 by flavon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct		s_state
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	death;
 	pthread_mutex_t	out;
-	pthread_mutex_t	time;
+	pthread_mutex_t	philo_time;
 }					t_state;
 
 typedef struct		s_philo
@@ -53,7 +53,6 @@ typedef struct		s_philo
 int					ft_atoi(const char *src);
 void				ft_putstr(char *str);
 char				*ft_strchr(const char *str, int ch);
-long int			ft_time(void);
 char				*ft_itoa(int n);
 int					ft_strlen(char *str);
 
@@ -67,8 +66,8 @@ void				*start_simulation(void *phi);
 **				SIMULATION_UTILS
 */
 
-long int			ft_time(void);
-void				take_fork(t_philo *philo, int left, int right, int flag);
+int					ft_time(void);
+void				take_fork(t_philo *philo, int left, int right);
 void				write_message(t_philo *philo, char *str);
 
 #endif

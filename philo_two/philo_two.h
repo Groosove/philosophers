@@ -6,7 +6,7 @@
 /*   By: flavon <flavon@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 11:14:15 by flavon            #+#    #+#             */
-/*   Updated: 2020/11/25 23:31:01 by flavon           ###   ########.fr       */
+/*   Updated: 2020/11/27 02:08:27 by flavon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ typedef struct		s_philo
 int					ft_atoi(const char *src);
 void				ft_putstr(char *str);
 char				*ft_strchr(const char *str, int ch);
-long int			ft_time(void);
 char				*ft_itoa(int n);
 int					ft_strlen(char *str);
 
@@ -69,7 +68,7 @@ void				*start_simulation(void *phi);
 **				SIMULATION_UTILS
 */
 
-long int			ft_time(void);
+int					ft_time(void);
 void				take_fork(t_philo *philo, int left, int right, int flag);
 void				write_message(t_philo *philo, char *str);
 

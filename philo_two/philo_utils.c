@@ -6,18 +6,18 @@
 /*   By: flavon <flavon@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 09:52:45 by flavon            #+#    #+#             */
-/*   Updated: 2020/11/25 23:33:01 by flavon           ###   ########.fr       */
+/*   Updated: 2020/11/27 02:15:44 by flavon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_two.h"
 
-long int	ft_time(void)
+int			ft_time(void)
 {
 	struct timeval time;
 
 	gettimeofday(&time, NULL);
-	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
+	return ((int)((time.tv_sec * 1000) + (time.tv_usec / 1000)));
 }
 
 void		write_message(t_philo *philo, char *str)

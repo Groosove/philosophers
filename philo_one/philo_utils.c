@@ -6,34 +6,26 @@
 /*   By: flavon <flavon@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 09:52:45 by flavon            #+#    #+#             */
-/*   Updated: 2020/11/25 23:33:14 by flavon           ###   ########.fr       */
+/*   Updated: 2020/11/27 02:15:34 by flavon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
 
-long int	ft_time(void)
+int			ft_time(void)
 {
 	struct timeval time;
 
 	gettimeofday(&time, NULL);
-	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
+	return ((int)((time.tv_sec * 1000) + (time.tv_usec / 1000)));
 }
 
-void		take_fork(t_philo *philo, int left_fork, int right_fork, int flag)
+void		take_fork(t_philo *philo, int left_fork, int right_fork)
 {
-	if (flag)
-	{
-		pthread_mutex_lock(&philo->state->forks[left_fork]);
-		write_message(philo, "has taken a fork\n");
-		pthread_mutex_lock(&philo->state->forks[right_fork]);
-		write_message(philo, "has taken a fork\n");
-	}
-	else
-	{
-		pthread_mutex_unlock(&philo->state->forks[right_fork]);
-		pthread_mutex_unlock(&philo->state->forks[left_fork]);
-	}
+	pthread_mutex_lock(&philo->state->forks[left_fork]);
+	write_message(philo, "has taken a fork\n");
+	pthread_mutex_lock(&philo->state->forks[right_fork]);
+	write_message(philo, "has taken a fork\n");
 }
 
 void		write_message(t_philo *philo, char *str)

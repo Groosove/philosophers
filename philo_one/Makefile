@@ -6,7 +6,7 @@
 #    By: flavon <flavon@student.21-school.ru>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/19 11:15:56 by flavon            #+#    #+#              #
-#    Updated: 2020/11/21 14:14:29 by flavon           ###   ########.fr        #
+#    Updated: 2020/11/26 18:55:51 by flavon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ CC = gcc
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(FLAG) -I $(INCLUDE) $(SRCS) -o $(NAME) -pthread
+	$(CC) $(FLAG) -I $(INCLUDE) $(SRCS) -o $(NAME)
 
 $(OBJ_PATH)%.o: %.c
 	@test -d $(OBJ_PATH) || mkdir $(OBJ_PATH)
